@@ -1,25 +1,21 @@
 from collections import deque
 
 def bfs_shortest_path(graph, start, goal):
-    if start not in graph or goal not in graph:
-        return []
-
-    if start == goal:
-        return [start]
-
-    visited = set([start])
+    visited = set()
     queue = deque([[start]])
 
     while queue:
         path = queue.popleft()
         node = path[-1]
 
-        for neighbor in graph.get(node, []):
-            if neighbor not in visited:
-                new_path = path + [neighbor]
-                if neighbor == goal:
-                    return new_path
+        if node == goal:
+            return path
+
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph.get(node, []):
+                new_path = list(path)
+                new_path.append(neighbor)
                 queue.append(new_path)
-                visited.add(neighbor)
 
     return []

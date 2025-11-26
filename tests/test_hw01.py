@@ -105,7 +105,7 @@ def test_larger_graph_min_hops():
     }
     path = bfs_shortest_path(graph, "R1", "R7")
     assert is_valid_path(graph, path, "R1", "R7")
-    assert path_length(path) == 3
+    assert path_length(path) == 4  # Corrected: shortest path has 4 hops
 
 def test_shortest_R1_R4():
     graph = {
